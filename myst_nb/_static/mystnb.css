@@ -114,8 +114,9 @@ div.cell_output table {
 
 
 /* Inline text from `paste` operation */
-
-span.pasted-text {
+span.pasted-inline code, span.pasted-text {
+  background: #e9ecef;
+  padding: 0 .2em;
   font-weight: bold;
 }
 
