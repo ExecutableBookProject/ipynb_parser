@@ -253,10 +253,10 @@ class CellOutputRendererBase(ABC):
         with mock.patch.dict(
             self.env.temp_data, {"docname": self.env.path2doc(self.node.source)}
         ):
-            parser.render(text)
+            subsequent_nodes = parser.render(text)
 
         # TODO is there any transforms we should retroactively carry out?
-        return parent.children
+        return parent.children + subsequent_nodes
 
     @abstractmethod
     def render(
