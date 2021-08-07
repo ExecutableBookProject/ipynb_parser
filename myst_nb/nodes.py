@@ -48,7 +48,7 @@ class CellOutputBundleNode(nodes.container):
 
     @property
     def renderer(self) -> str:
-        """The cell level metadata for this output."""
+        """The renderer for this output cell."""
         return self._renderer
 
     def copy(self):

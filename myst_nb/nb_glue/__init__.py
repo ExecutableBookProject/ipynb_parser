@@ -5,14 +5,14 @@ GLUE_PREFIX = "application/papermill.record/"
 
 
 def glue(name, variable, display=True):
-    """Glue an variable into the notebook's cell metadata.
+    """Glue a variable into the notebook's cell metadata.
 
     Parameters
     ----------
     name: string
         A unique name for the variable. You can use this name to refer to the variable
         later on.
-    variable: python object
+    variable: Python object
         A variable in Python for which you'd like to store its display value. This is
         not quite the same as storing the object itself - the stored information is
         what is *displayed* when you print or show the object in a Jupyter Notebook.
