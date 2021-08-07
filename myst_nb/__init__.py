@@ -210,7 +210,7 @@ def validate_config_values(app: Sphinx, config):
     for name, converter in app.config["nb_custom_formats"].items():
         if not isinstance(name, str):
             raise MystNbConfigError(
-                f"'nb_custom_formats' keys should br a string: {name}"
+                f"'nb_custom_formats' keys should be a string: {name}"
             )
         if isinstance(converter, str):
             app.config["nb_custom_formats"][name] = (converter, {})
