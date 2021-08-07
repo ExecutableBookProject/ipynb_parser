@@ -161,6 +161,12 @@ tags: [raises-exception]
 print(thisvariabledoesntexist)
 ```
 
+(execute/fail_on_error)=
+### Error Reporting: Warning vs. Failure
+When an error occurs in a context where `allow_errors=False`, the default behaviour is for this to be reported as a warning. This warning will simply be logged and not cause the build to fail unless `sphinx-build` is run with the [`-W` option](https://www.sphinx-doc.org/en/master/man/sphinx-build.html#cmdoption-sphinx-build-W).
+
+If you would like unexpected execution errors to cause a build failure rather than a warning regardless of the `-W` option, you can achieve this by setting `execution_fail_on_error=True` in your `conf.py`.
+
 (execute/statistics)=
 ## Execution statistics
 

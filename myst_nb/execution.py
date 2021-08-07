@@ -30,6 +30,10 @@ from .converter import get_nb_converter
 LOGGER = logging.getLogger(__name__)
 
 
+class ExecutionError(Exception):
+    pass
+
+
 def update_execution_cache(
     app: Sphinx, builder: Builder, added: Set[str], changed: Set[str], removed: Set[str]
 ):
@@ -79,6 +83,7 @@ def update_execution_cache(
             path_to_cache=app.env.nb_path_to_cache,
             timeout=app.config["execution_timeout"],
             allow_errors=app.config["execution_allow_errors"],
+            fail_on_error=app.config["execution_fail_on_error"],
             exec_in_temp=app.config["execution_in_temp"],
         )
 
@@ -143,14 +148,19 @@ def generate_notebook_outputs(
 
             report_path = None
             if result.err:
-                report_path, message = _report_exec_fail(
-                    env,
-                    Path(file_path).name,
-                    result.exc_string,
-                    show_traceback,
-                    "Execution Failed with traceback saved in {}",
-                )
-                LOGGER.error(message)
+                if env.config["execution_fail_on_error"]:
+                    raise ExecutionError(
+                        f"Execution failed for file: {file_path}\n{str(result.err)}"
+                    )
+                else:
+                    report_path, message = _report_exec_fail(
+                        env,
+                        Path(file_path).name,
+                        result.exc_string,
+                        show_traceback,
+                        "Execution Failed with traceback saved in {}",
+                    )
+                    LOGGER.error(message)
 
             ntbk = result.nb
 
@@ -196,7 +206,10 @@ def generate_notebook_outputs(
             )
             message += suffix
 
-        LOGGER.error(message)
+        if env.config["execution_fail_on_error"]:
+            raise ExecutionError(message)
+        else:
+            LOGGER.error(message)
 
     else:
         LOGGER.verbose("Merged cached outputs into %s", str(r_file_path))
@@ -259,6 +272,7 @@ def _stage_and_execute(
     path_to_cache: str,
     timeout: Optional[int],
     allow_errors: bool,
+    fail_on_error: bool,
     exec_in_temp: bool,
 ):
     pk_list = []
@@ -282,6 +296,7 @@ def _stage_and_execute(
                 timeout=timeout,
                 exec_in_temp=exec_in_temp,
                 allow_errors=allow_errors,
+                fail_on_error=fail_on_error,
                 env=env,
             )
     except OSError as err:
@@ -291,9 +306,13 @@ def _stage_and_execute(
         # Normally we want to keep the stage records available, so that we can retrieve
         # execution tracebacks at the `generate_notebook_outputs` stage,
         # but we need to flush if it becomes 'corrupted'
-        LOGGER.error(
-            "Execution failed in an unexpected way, clearing staged notebooks: %s", err
+        message = (
+            f"Execution failed in an unexpected way, clearing staged notebooks: {err}"
         )
+        if fail_on_error:
+            raise ExecutionError(message)
+        else:
+            LOGGER.error(message)
         for record in cache_base.list_staged_records():
             cache_base.discard_staged_notebook(record.pk)
 
@@ -304,13 +323,17 @@ def execute_staged_nb(
     timeout: Optional[int],
     exec_in_temp: bool,
     allow_errors: bool,
+    fail_on_error: bool,
     env: BuildEnvironment,
 ):
     """Executing the staged notebook."""
     try:
         executor = load_executor("basic", cache_base, logger=LOGGER)
     except ImportError as error:
-        LOGGER.error(str(error))
+        if fail_on_error:
+            raise ExecutionError(str(error))
+        else:
+            LOGGER.error(str(error))
         return 1
 
     def _converter(path):

@@ -77,6 +77,10 @@ Firstly for execution:
   - `False`
   - If `False`, when a code cell raises an error the execution is stopped, if `True` then all cells are always run.
     This can also be overridden by metadata in a notebook, [see here](execute/allow_errors) for details.
+* - `execution_fail_on_error`
+  - `False`
+  - If `False`, disallowed errors will result in a sphinx warnings.
+    If `True`, then disallowed errors result in a failed build. [See here](execute/fail_on_error) for details.
 * - `execution_timeout`
   - 30
   - The maximum time (in seconds) each notebook cell is allowed to run.

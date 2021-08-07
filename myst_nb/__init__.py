@@ -121,6 +121,7 @@ def setup(app: Sphinx):
     app.add_config_value("jupyter_execute_notebooks", "auto", "env")
     app.add_config_value("execution_timeout", 30, "env")
     app.add_config_value("execution_allow_errors", False, "env")
+    app.add_config_value("execution_fail_on_error", False, "env")
     app.add_config_value("execution_in_temp", False, "env")
     # show traceback in stdout (in addition to writing to file)
     # this is useful in e.g. RTD where one cannot inspect a file

@@ -2,6 +2,8 @@ import os
 
 import pytest
 
+from myst_nb.execution import ExecutionError
+
 
 def regress_nb_doc(file_regression, sphinx_run, check_nbs):
     file_regression.check(
@@ -301,3 +303,27 @@ def test_custom_convert_cache(sphinx_run, file_regression, check_nbs):
     assert "custom-formats" in sphinx_run.env.nb_execution_data
     assert sphinx_run.env.nb_execution_data["custom-formats"]["method"] == "cache"
     assert sphinx_run.env.nb_execution_data["custom-formats"]["succeeded"] is True
+
+
+@pytest.mark.sphinx_params(
+    "basic_failing.ipynb",
+    conf={"execution_allow_errors": False, "execution_fail_on_error": True},
+)
+def test_execution_fail_on_error(sphinx_run, file_regression, check_nbs):
+    with pytest.raises(ExecutionError) as excinfo:
+        sphinx_run.build()
+    assert str(excinfo.value).startswith("Execution failed for file:")
+    # Ensure filename is reported:
+    assert "basic_failing.ipynb" in str(excinfo.value)
+    # Ensure failing code is reported:
+    assert "raise Exception('oopsie!')" in str(excinfo.value)
+
+
+@pytest.mark.sphinx_params(
+    "basic_failing.ipynb",
+    conf={"execution_allow_errors": True, "execution_fail_on_error": True},
+)
+def test_execution_fail_on_error_allow_errors(sphinx_run, file_regression, check_nbs):
+    sphinx_run.build()
+    assert not sphinx_run.warnings()
+    regress_nb_doc(file_regression, sphinx_run, check_nbs)
