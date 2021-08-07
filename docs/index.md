@@ -58,30 +58,55 @@ To install `myst-nb`, do the following:
 * Write Jupyter Notebooks with your built documentation, and remember to include them
   in your `toctree`, and that's it!
 
-## Customize and configure
+## Using with Sphinx
 
-For information on using and configuring MyST-NB, as well as some examples of notebook
-outputs, see the pages below:
+These sections cover how to use MyST-NB with your Sphinx sites.
+They cover how to use Jupyter Notebooks with MyST markdown, as well as
+[MyST Markdown Notebooks](use/markdown.md), in your Sphinx site.
 
 ```{toctree}
-:maxdepth: 2
-use/index
+:maxdepth: 1
+:caption: Using with Sphinx
+use/start
+use/myst
+use/execute
+examples/custom-formats
+use/hiding
+use/formatting_outputs
+use/glue
+```
+
+## Text-based Notebooks with MyST Markdown
+
+You can also use MyST-NB to define notebooks entirely via MyST Markdown.
+See below for more details, as well as [](examples/custom-formats) for more text-based notebooks in Sphinx.
+
+```{toctree}
+:maxdepth: 1
+:caption: Text-based Notebooks
 use/markdown
 ```
+## Examples
 
-In addition, here is a reference page that uses the `jupyter-sphinx` package to create
-outputs, to compare how these outputs look relative to the MyST-NB style.
+Below are several example pages to help demonstrate the functionality of MyST-NB.
 
 ```{toctree}
 :maxdepth: 2
-examples/index
+:caption: Examples
+examples/basic
+examples/coconut-lang
+examples/custom-formats
+examples/interactive
 ```
+
+## Development and Reference
 
 Finally, here is documentation on contributing to the development of MySt-NB
 
 ```{toctree}
 :titlesonly:
 :maxdepth: 1
+:caption: Development and Reference
 develop/contributing
 api/index
 GitHub Repo <https://github.com/executablebooks/myst-nb>

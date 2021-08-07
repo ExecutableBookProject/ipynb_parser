@@ -61,6 +61,7 @@ html_theme_options = {
     "repository_url": "https://github.com/executablebooks/myst-nb",
     "repository_branch": "master",
     "use_edit_page_button": True,
+    "use_repository_button": True,
     "path_to_docs": "docs/",
     "show_navbar_depth": 2,
 }

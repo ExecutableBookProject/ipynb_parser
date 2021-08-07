@@ -273,7 +273,7 @@ print("A python cell")
 And some more markdown...
 ````
 
-For more information, see [the MyST-NB Sphinx extension documentation](index.md).
+For more information, see [the MyST-NB Sphinx extension documentation](start.md).
 
 (myst-nb/jupyter-book)=
 ## MyST Notebooks in Jupyter Book

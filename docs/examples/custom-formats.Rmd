@@ -9,7 +9,7 @@ jupyter:
 ---
 
 (examples/custom_formats)=
-# Custom Notebook Formats
+# Text-based Notebook Formats
 
 You can designate additional file types to be converted to Notebooks, and then executed / parsed in the same manner as regular Notebooks, by adding the following configuration to your `conf.py`:
 

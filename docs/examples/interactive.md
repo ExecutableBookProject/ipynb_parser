@@ -30,9 +30,9 @@ data = px.data.iris()
 data.head()
 ```
 
-# Plotting libraries
+## Plotting libraries
 
-## Altair
+### Altair
 
 Interactive outputs will work under the assumption that the outputs they produce have
 self-contained HTML that works without requiring any external dependencies to load.
@@ -49,7 +49,7 @@ alt.Chart(data=data).mark_point().encode(
 )
 ```
 
-## Plotly
+### Plotly
 
 Plotly is another interactive plotting library that provides a high-level API for
 visualization. See the [Plotly JupyterLab documentation](https://plotly.com/python/getting-started/#jupyterlab-support-python-35)
@@ -77,7 +77,7 @@ html_js_files = ["https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/requir
 
 :::
 
-## Bokeh
+### Bokeh
 
 Bokeh provides several options for interactive visualizations, and is part of the PyViz ecosystem. See
 [the Bokeh with Jupyter documentation](https://docs.bokeh.org/en/latest/docs/user_guide/jupyter.html#userguide-jupyter) to
@@ -99,7 +99,7 @@ p.circle(data["sepal_width"], data["sepal_length"], fill_color=data["species"], 
 show(p)
 ```
 
-# ipywidgets
+## ipywidgets
 
 You may also run code for Jupyter Widgets in your document, and the interactive HTML
 outputs will embed themselves in your side. See [the ipywidgets documentation](https://ipywidgets.readthedocs.io/en/latest/user_install.html)
