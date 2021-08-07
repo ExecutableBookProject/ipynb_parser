@@ -169,7 +169,8 @@
                     f = y(n)-2*y(n-1/sym.pi)-5*y(n-2)
                     sym.rsolve(f,y(n),[1,4])
             <CellOutputNode classes="cell_output">
-                <image candidates="{'*': '_build/jupyter_execute/complex_outputs_24_0.png'}" uri="_build/jupyter_execute/complex_outputs_24_0.png">
+                <math_block classes="output text_latex" nowrap="False" number="True" xml:space="preserve">
+                    \displaystyle \left(\sqrt{5} i\right)^{\alpha} \left(\frac{1}{2} - \frac{2 \sqrt{5} i}{5}\right) + \left(- \sqrt{5} i\right)^{\alpha} \left(\frac{1}{2} + \frac{2 \sqrt{5} i}{5}\right)
         <CellNode cell_type="code" classes="cell">
             <CellInputNode classes="cell_input">
                 <literal_block language="ipython3" linenos="False" xml:space="preserve">

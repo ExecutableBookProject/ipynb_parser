@@ -33,10 +33,10 @@ def get_default_render_priority(builder: str) -> Optional[List[str]]:
             "application/javascript",
             "text/html",
             "image/svg+xml",
+            "text/latex",
             "image/png",
             "image/jpeg",
             "text/markdown",
-            "text/latex",
             "text/plain",
         )
         for builder in (
@@ -53,10 +53,10 @@ def get_default_render_priority(builder: str) -> Optional[List[str]]:
     }
     # TODO: add support for "image/svg+xml"
     priority["latex"] = (
+        "text/latex",
         "application/pdf",
         "image/png",
         "image/jpeg",
-        "text/latex",
         "text/markdown",
         "text/plain",
     )
