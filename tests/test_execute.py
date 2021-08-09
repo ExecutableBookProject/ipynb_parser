@@ -233,7 +233,7 @@ def test_relative_path_force(sphinx_run, file_regression, check_nbs):
     conf={"jupyter_execute_notebooks": "cache", "execution_timeout": 1},
 )
 def test_execution_timeout(sphinx_run, file_regression, check_nbs):
-    """ execution should fail given the low timeout value"""
+    """execution should fail given the low timeout value"""
     sphinx_run.build()
     # print(sphinx_run.status())
     assert "execution failed" in sphinx_run.warnings()
@@ -244,7 +244,7 @@ def test_execution_timeout(sphinx_run, file_regression, check_nbs):
     conf={"jupyter_execute_notebooks": "cache", "execution_timeout": 60},
 )
 def test_execution_metadata_timeout(sphinx_run, file_regression, check_nbs):
-    """ notebook timeout metadata has higher preference then execution_timeout config"""
+    """notebook timeout metadata has higher preference then execution_timeout config"""
     sphinx_run.build()
     assert "execution failed" in sphinx_run.warnings()
 

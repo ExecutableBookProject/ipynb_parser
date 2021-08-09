@@ -249,7 +249,7 @@ def paste_text_role(name, rawtext, text, lineno, inliner, options=None, content=
 
 
 class NbGlueDomain(Domain):
-    """A sphinx domain for handling glue data """
+    """A sphinx domain for handling glue data"""
 
     name = "glue"
     label = "NotebookGlue"
