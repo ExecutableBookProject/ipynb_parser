@@ -1,0 +1,13 @@
+<document source="basic_stderr">
+    <CellNode cell_type="code" classes="cell">
+        <CellInputNode classes="cell_input">
+            <literal_block language="ipython3" linenos="False" xml:space="preserve">
+                import sys
+                print('hallo', file=sys.stderr)
+        <CellOutputNode classes="cell_output">
+    <CellNode cell_type="code" classes="cell tag_remove-stderr">
+        <CellInputNode classes="cell_input">
+            <literal_block language="ipython3" linenos="False" xml:space="preserve">
+                import sys
+                print('hallo', file=sys.stderr)
+        <CellOutputNode classes="cell_output">

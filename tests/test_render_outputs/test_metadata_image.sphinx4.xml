@@ -1,0 +1,23 @@
+<document source="metadata_image">
+    <section classes="tex2jax_ignore mathjax_ignore" ids="formatting-code-outputs" names="formatting\ code\ outputs">
+        <title>
+            Formatting code outputs
+        <CellNode cell_type="code" classes="cell">
+            <CellInputNode classes="cell_input">
+                <literal_block language="ipython3" linenos="False" xml:space="preserve">
+                    from IPython.display import Image
+                    Image("fun-fish.png")
+            <CellOutputNode classes="cell_output">
+                <figure ids="fun-fish" names="fun-fish">
+                    <image alt="fun-fish" candidates="{'*': '_build/jupyter_execute/metadata_image_1_0.png'}" classes="shadow bg-primary" uri="_build/jupyter_execute/metadata_image_1_0.png" width="300px">
+                    <caption>
+                        <paragraph>
+                            Hey everyone its 
+                            <strong>
+                                party
+                             time!
+        <paragraph>
+            Link: 
+            <reference internal="True" refid="fun-fish">
+                <inline classes="std std-ref">
+                    swim to the fish

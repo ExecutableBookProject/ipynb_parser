@@ -5,6 +5,7 @@ from pathlib import Path
 
 import nbformat as nbf
 import pytest
+import sphinx
 from docutils.nodes import image as image_node
 from nbconvert.filters import strip_ansi
 from nbdime.diffing.notebooks import (
@@ -60,6 +61,9 @@ class SphinxFixture:
         self.app = app
         self.env = app.env
         self.files = [os.path.splitext(ff) for ff in filenames]
+        self.software_versions = (
+            f".sphinx{sphinx.version_info[0]}"  # software versions for fixtures
+        )
 
         # self.nb_file = nb_file
         # self.nb_name = os.path.splitext(nb_file)[0]

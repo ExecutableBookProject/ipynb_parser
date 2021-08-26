@@ -1,0 +1,10 @@
+<document source="nb_exec_table">
+    <section classes="tex2jax_ignore mathjax_ignore" ids="test-the-nb-exec-table-directive" names="test\ the\ nb-exec-table\ directive">
+        <title>
+            Test the 
+            <literal>
+                nb-exec-table
+             directive
+        <paragraph>
+            This directive should generate a table of executed notebook statistics.
+        <ExecutionStatsNode>

@@ -25,10 +25,15 @@ def test_codecell_file(sphinx_run, file_regression, check_nbs, get_test_path):
         == '{"display_name": "Python 3", "language": "python", "name": "python3"}'
     )
     file_regression.check(
-        sphinx_run.get_nb(), check_fn=check_nbs, extension=".ipynb", encoding="utf8"
+        sphinx_run.get_nb(),
+        check_fn=check_nbs,
+        extension=f"{sphinx_run.software_versions}.ipynb",
+        encoding="utf8",
     )
     file_regression.check(
-        sphinx_run.get_doctree().pformat(), extension=".xml", encoding="utf8"
+        sphinx_run.get_doctree().pformat(),
+        extension=f"{sphinx_run.software_versions}.xml",
+        encoding="utf8",
     )
 
 
@@ -62,8 +67,13 @@ def test_codecell_file_warnings(sphinx_run, file_regression, check_nbs, get_test
         == '{"display_name": "Python 3", "language": "python", "name": "python3"}'
     )
     file_regression.check(
-        sphinx_run.get_nb(), check_fn=check_nbs, extension=".ipynb", encoding="utf8"
+        sphinx_run.get_nb(),
+        check_fn=check_nbs,
+        extension=f"{sphinx_run.software_versions}.ipynb",
+        encoding="utf8",
     )
     file_regression.check(
-        sphinx_run.get_doctree().pformat(), extension=".xml", encoding="utf8"
+        sphinx_run.get_doctree().pformat(),
+        extension=f"{sphinx_run.software_versions}.xml",
+        encoding="utf8",
     )

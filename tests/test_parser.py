@@ -18,7 +18,9 @@ def test_basic_run(sphinx_run, file_regression):
         == '{"display_name": "Python 3", "language": "python", "name": "python3"}'
     )
     file_regression.check(
-        sphinx_run.get_doctree().pformat(), extension=".xml", encoding="utf8"
+        sphinx_run.get_doctree().pformat(),
+        extension=f"{sphinx_run.software_versions}.xml",
+        encoding="utf8",
     )
 
     filenames = {
@@ -56,7 +58,9 @@ def test_complex_outputs(sphinx_run, file_regression):
         == '{"display_name": "Python 3", "language": "python", "name": "python3"}'
     )
     file_regression.check(
-        sphinx_run.get_doctree().pformat(), extension=".xml", encoding="utf8"
+        sphinx_run.get_doctree().pformat(),
+        extension=f"{sphinx_run.software_versions}.xml",
+        encoding="utf8",
     )
 
     filenames = {
@@ -85,6 +89,7 @@ def test_toctree_in_ipynb(sphinx_run, file_regression):
     print(sphinx_run.status())
     print(sphinx_run.warnings())
     file_regression.check(
-        sphinx_run.get_doctree("latex_build/other").pformat(), extension=".xml"
+        sphinx_run.get_doctree("latex_build/other").pformat(),
+        extension=f"{sphinx_run.software_versions}.xml",
     )
     assert sphinx_run.warnings() == ""

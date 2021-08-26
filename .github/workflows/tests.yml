@@ -27,7 +27,7 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         python-version: [3.6, 3.7, 3.8, 3.9]
-        sphinx: [">=3,<4"]
+        sphinx: [">=3,<5"]
         include:
           - os: ubuntu-latest
             python-version: 3.8

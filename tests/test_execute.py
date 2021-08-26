@@ -5,10 +5,17 @@ import pytest
 
 def regress_nb_doc(file_regression, sphinx_run, check_nbs):
     file_regression.check(
-        sphinx_run.get_nb(), check_fn=check_nbs, extension=".ipynb", encoding="utf8"
+        sphinx_run.get_nb(),
+        check_fn=check_nbs,
+        extension=f"{sphinx_run.software_versions}.ipynb",
+        encoding="utf8",
     )
     doctree = sphinx_run.get_doctree()
-    file_regression.check(doctree.pformat(), extension=".xml", encoding="utf8")
+    file_regression.check(
+        doctree.pformat(),
+        extension=f"{sphinx_run.software_versions}.xml",
+        encoding="utf8",
+    )
 
 
 @pytest.mark.sphinx_params(
@@ -86,7 +93,9 @@ def test_exclude_path(sphinx_run, file_regression):
     assert len(sphinx_run.app.env.nb_excluded_exec_paths) == 1
     assert "Executing" not in sphinx_run.status(), sphinx_run.status()
     file_regression.check(
-        sphinx_run.get_doctree().pformat(), extension=".xml", encoding="utf8"
+        sphinx_run.get_doctree().pformat(),
+        extension=f"{sphinx_run.software_versions}.xml",
+        encoding="utf8",
     )
 
 
@@ -260,7 +269,9 @@ def test_nb_exec_table(sphinx_run, file_regression, check_nbs):
     sphinx_run.build()
     assert not sphinx_run.warnings()
     file_regression.check(
-        sphinx_run.get_doctree().pformat(), extension=".xml", encoding="utf8"
+        sphinx_run.get_doctree().pformat(),
+        extension=f"{sphinx_run.software_versions}.xml",
+        encoding="utf8",
     )
     assert '<tr class="row-even"><td><p>nb_exec_table</p></td>' in sphinx_run.get_html()
 

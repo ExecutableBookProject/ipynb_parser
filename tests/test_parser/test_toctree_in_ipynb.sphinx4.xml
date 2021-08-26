@@ -1,0 +1,21 @@
+<document source="latex_build/other">
+    <target refid="title-ref">
+    <section classes="tex2jax_ignore mathjax_ignore" ids="title title-ref" names="title title_ref">
+        <title refid="id1">
+            Title
+        <topic classes="contents" ids="contents" names="contents">
+            <title>
+                Contents
+            <bullet_list>
+                <list_item>
+                    <paragraph>
+                        <reference ids="id1" refid="title">
+                            Title
+        <paragraph>
+            Content
+        <CellNode cell_type="code" classes="cell">
+            <CellInputNode classes="cell_input">
+                <literal_block language="ipython3" xml:space="preserve">
+                    print(1)
+            <CellOutputNode classes="cell_output">
+                <CellOutputBundleNode output_count="1">

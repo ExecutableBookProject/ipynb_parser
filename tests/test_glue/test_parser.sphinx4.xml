@@ -1,0 +1,169 @@
+<document source="with_glue">
+    <section classes="tex2jax_ignore mathjax_ignore" ids="glue-tests" names="glue\ tests">
+        <title>
+            Glue Tests
+        <CellNode cell_type="code" classes="cell">
+            <CellInputNode classes="cell_input">
+                <literal_block language="ipython3" linenos="False" xml:space="preserve">
+                    from myst_nb import glue
+        <CellNode cell_type="code" classes="cell">
+            <CellInputNode classes="cell_input">
+                <literal_block language="ipython3" linenos="False" xml:space="preserve">
+                    glue("key_text1", "text1")
+                    glue("key_float", 3.14159)
+            <CellOutputNode classes="cell_output">
+                <literal_block classes="output text_plain" language="myst-ansi" linenos="False" xml:space="preserve">
+                    'text1'
+                <literal_block classes="output text_plain" language="myst-ansi" linenos="False" xml:space="preserve">
+                    3.14159
+        <CellNode cell_type="code" classes="cell">
+            <CellInputNode classes="cell_input">
+                <literal_block language="ipython3" linenos="False" xml:space="preserve">
+                    glue("key_undisplayed", "undisplayed", display=False)
+            <CellOutputNode classes="cell_output">
+        <CellNode cell_type="code" classes="cell">
+            <CellInputNode classes="cell_input">
+                <literal_block language="ipython3" linenos="False" xml:space="preserve">
+                    import pandas as pd
+                    df = pd.DataFrame({"header": [1, 2, 3]})
+                    glue("key_df", df)
+            <CellOutputNode classes="cell_output">
+                <raw classes="output text_html" format="html" xml:space="preserve">
+                    <div>
+                    <style scoped>
+                        .dataframe tbody tr th:only-of-type {
+                            vertical-align: middle;
+                        }
+                    
+                        .dataframe tbody tr th {
+                            vertical-align: top;
+                        }
+                    
+                        .dataframe thead th {
+                            text-align: right;
+                        }
+                    </style>
+                    <table border="1" class="dataframe">
+                      <thead>
+                        <tr style="text-align: right;">
+                          <th></th>
+                          <th>header</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th>0</th>
+                          <td>1</td>
+                        </tr>
+                        <tr>
+                          <th>1</th>
+                          <td>2</td>
+                        </tr>
+                        <tr>
+                          <th>2</th>
+                          <td>3</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    </div>
+        <CellNode cell_type="code" classes="cell">
+            <CellInputNode classes="cell_input">
+                <literal_block language="ipython3" linenos="False" xml:space="preserve">
+                    import matplotlib.pyplot as plt
+                    plt.plot([1, 2, 3])
+                    glue("key_plt", plt.gcf(), display=False)
+            <CellOutputNode classes="cell_output">
+                <image candidates="{'*': '_build/jupyter_execute/with_glue_5_1.png'}" uri="_build/jupyter_execute/with_glue_5_1.png">
+        <section ids="referencing-the-figs" names="referencing\ the\ figs">
+            <title>
+                Referencing the figs
+            <paragraph>
+                <inline classes="pasted-inline">
+                    <literal classes="output text_plain" language="none">
+                        'text1'
+                , 
+                <inline classes="pasted-inline">
+                    <image candidates="{'*': '_build/jupyter_execute/with_glue_5_0.png'}" uri="_build/jupyter_execute/with_glue_5_0.png">
+            <CellOutputNode classes="cell_output">
+                <raw classes="output text_html" format="html" xml:space="preserve">
+                    <div>
+                    <style scoped>
+                        .dataframe tbody tr th:only-of-type {
+                            vertical-align: middle;
+                        }
+                    
+                        .dataframe tbody tr th {
+                            vertical-align: top;
+                        }
+                    
+                        .dataframe thead th {
+                            text-align: right;
+                        }
+                    </style>
+                    <table border="1" class="dataframe">
+                      <thead>
+                        <tr style="text-align: right;">
+                          <th></th>
+                          <th>header</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th>0</th>
+                          <td>1</td>
+                        </tr>
+                        <tr>
+                          <th>1</th>
+                          <td>2</td>
+                        </tr>
+                        <tr>
+                          <th>2</th>
+                          <td>3</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    </div>
+            <paragraph>
+                and 
+                <inline classes="pasted-text">
+                    text1
+                 inline…
+            <paragraph>
+                and formatted 
+                <inline classes="pasted-text">
+                    3.14
+            <CellOutputNode classes="cell_output">
+                <image candidates="{'*': '_build/jupyter_execute/with_glue_5_0.png'}" uri="_build/jupyter_execute/with_glue_5_0.png">
+            <paragraph>
+                and 
+                <inline classes="pasted-text">
+                    undisplayed
+                 inline…
+            <figure ids="abc" names="abc">
+                <CellOutputNode classes="cell_output">
+                    <image candidates="{'*': '_build/jupyter_execute/with_glue_5_0.png'}" uri="_build/jupyter_execute/with_glue_5_0.png">
+                <caption>
+                    A caption….
+                    
+                    ```## A test title 
+                    <inline classes="pasted-inline">
+                        <literal classes="output text_plain" language="none">
+                            'text1'
+        <section ids="math" names="math">
+            <title>
+                Math
+            <CellNode cell_type="code" classes="cell">
+                <CellInputNode classes="cell_input">
+                    <literal_block language="ipython3" linenos="False" xml:space="preserve">
+                        import sympy as sym
+                        f = sym.Function('f')
+                        y = sym.Function('y')
+                        n = sym.symbols(r'\alpha')
+                        f = y(n)-2*y(n-1/sym.pi)-5*y(n-2)
+                        glue("sym_eq", sym.rsolve(f,y(n),[1,4]))
+                <CellOutputNode classes="cell_output">
+                    <math_block classes="output text_latex" nowrap="False" number="True" xml:space="preserve">
+                        \displaystyle \left(\sqrt{5} i\right)^{\alpha} \left(\frac{1}{2} - \frac{2 \sqrt{5} i}{5}\right) + \left(- \sqrt{5} i\right)^{\alpha} \left(\frac{1}{2} + \frac{2 \sqrt{5} i}{5}\right)
+            <target refid="equation-eq-sym">
+            <math_block classes="pasted-math" docname="with_glue" ids="equation-eq-sym" label="eq-sym" nowrap="False" number="1" xml:space="preserve">
+                \displaystyle \left(\sqrt{5} i\right)^{\alpha} \left(\frac{1}{2} - \frac{2 \sqrt{5} i}{5}\right) + \left(- \sqrt{5} i\right)^{\alpha} \left(\frac{1}{2} + \frac{2 \sqrt{5} i}{5}\right)

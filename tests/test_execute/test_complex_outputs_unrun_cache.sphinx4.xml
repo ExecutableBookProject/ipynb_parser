@@ -1,0 +1,165 @@
+<document source="complex_outputs_unrun">
+    <CellNode cell_type="code" classes="cell">
+        <CellInputNode classes="cell_input">
+            <literal_block language="ipython3" xml:space="preserve">
+                import matplotlib.pyplot as plt
+                import pandas as pd
+                pd.set_option('display.latex.repr', True)
+                import sympy as sym
+                sym.init_printing(use_latex=True)
+                import numpy as np
+                from IPython.display import Image, Latex
+    <section classes="tex2jax_ignore mathjax_ignore" ids="markdown" names="markdown">
+        <title>
+            Markdown
+        <section ids="general" names="general">
+            <title>
+                General
+            <paragraph>
+                Some markdown text.
+            <paragraph>
+                A list:
+            <bullet_list>
+                <list_item>
+                    <paragraph>
+                        something
+                <list_item>
+                    <paragraph>
+                        something else
+            <paragraph>
+                A numbered list
+            <enumerated_list>
+                <list_item>
+                    <paragraph>
+                        something
+                <list_item>
+                    <paragraph>
+                        something else
+            <paragraph>
+                non-ascii characters TODO
+            <paragraph>
+                This is a long section of text, which we only want in a document (not a presentation)
+                
+                some text
+                
+                some more text
+                
+                some more text
+                
+                some more text
+                
+                some more text
+                
+                some more text
+                
+                some more text
+                
+                some more text
+                
+                some more text
+            <paragraph>
+                This is an abbreviated section of the document text, which we only want in a presentation
+            <bullet_list>
+                <list_item>
+                    <paragraph>
+                        summary of document text
+        <section ids="references-and-citations" names="references\ and\ citations">
+            <title>
+                References and Citations
+            <paragraph>
+                References to \cref{fig:example}, \cref{tbl:example}, =@eqn:example_sympy and \cref{code:example_mpl}.
+            <paragraph>
+                A latex citation.\cite{zelenyak_molecular_2016}
+            <paragraph>
+                A html citation.
+                <raw format="html" xml:space="preserve">
+                    <cite data-cite="kirkeminde_thermodynamic_2012">
+                (Kirkeminde, 2012)
+                <raw format="html" xml:space="preserve">
+                    </cite>
+        <section ids="todo-notes" names="todo\ notes">
+            <title>
+                Todo notes
+            <paragraph>
+                \todo[inline]{an inline todo}
+            <paragraph>
+                Some text.\todo{a todo in the margins}
+    <section classes="tex2jax_ignore mathjax_ignore" ids="text-output" names="text\ output">
+        <title>
+            Text Output
+        <CellNode cell_type="code" classes="cell">
+            <CellInputNode classes="cell_input">
+                <literal_block language="ipython3" xml:space="preserve">
+                    print("""
+                    This is some printed text,
+                    with a nicely formatted output.
+                    """)
+            <CellOutputNode classes="cell_output">
+                <CellOutputBundleNode output_count="1">
+    <section classes="tex2jax_ignore mathjax_ignore" ids="images-and-figures" names="images\ and\ figures">
+        <title>
+            Images and Figures
+        <section ids="displaying-a-plot-with-its-code" names="displaying\ a\ plot\ with\ its\ code">
+            <title>
+                Displaying a plot with its code
+            <paragraph>
+                A matplotlib figure, with the caption set in the markdowncell above the figure.
+            <paragraph>
+                The plotting code for a matplotlib figure (\cref{fig:example_mpl}).
+    <section classes="tex2jax_ignore mathjax_ignore" ids="tables-with-pandas" names="tables\ (with\ pandas)">
+        <title>
+            Tables (with pandas)
+        <paragraph>
+            The plotting code for a pandas Dataframe table (\cref{tbl:example}).
+        <CellNode cell_type="code" classes="cell">
+            <CellInputNode classes="cell_input">
+                <literal_block language="ipython3" xml:space="preserve">
+                    np.random.seed(0) 
+                    df = pd.DataFrame(np.random.rand(3,4),columns=['a','b','c','d'])
+                    df.a = ['$\delta$','x','y']
+                    df.b = ['l','m','n']
+                    df.set_index(['a','b'])
+                    df.round(3)
+            <CellOutputNode classes="cell_output">
+                <CellOutputBundleNode output_count="1">
+    <section classes="tex2jax_ignore mathjax_ignore" ids="equations-with-ipython-or-sympy" names="equations\ (with\ ipython\ or\ sympy)">
+        <title>
+            Equations (with ipython or sympy)
+        <CellNode cell_type="code" classes="cell">
+            <CellInputNode classes="cell_input">
+                <literal_block language="ipython3" xml:space="preserve">
+                    Latex('$$ a = b+c $$')
+            <CellOutputNode classes="cell_output">
+                <CellOutputBundleNode output_count="1">
+        <paragraph>
+            The plotting code for a sympy equation (=@eqn:example_sympy).
+        <CellNode cell_type="code" classes="cell">
+            <CellInputNode classes="cell_input">
+                <literal_block language="ipython3" xml:space="preserve">
+                    y = sym.Function('y')
+                    n = sym.symbols(r'\alpha')
+                    f = y(n)-2*y(n-1/sym.pi)-5*y(n-2)
+                    sym.rsolve(f,y(n),[1,4])
+            <CellOutputNode classes="cell_output">
+                <CellOutputBundleNode output_count="1">
+    <section classes="tex2jax_ignore mathjax_ignore" ids="interactive-outputs" names="interactive\ outputs">
+        <title>
+            Interactive outputs
+        <section ids="ipywidgets" names="ipywidgets">
+            <title>
+                ipywidgets
+            <CellNode cell_type="code" classes="cell">
+                <CellInputNode classes="cell_input">
+                    <literal_block language="ipython3" xml:space="preserve">
+                        import ipywidgets as widgets
+                        widgets.Layout(model_id="1337h4x0R")
+                <CellOutputNode classes="cell_output">
+                    <CellOutputBundleNode output_count="1">
+            <CellNode cell_type="code" classes="cell">
+                <CellInputNode classes="cell_input">
+                    <literal_block language="ipython3" xml:space="preserve">
+                        from IPython.display import display, Markdown
+                        display(Markdown('**_some_ markdown**'))
+                <CellOutputNode classes="cell_output">
+                    <CellOutputBundleNode output_count="1">
+    <JupyterWidgetStateNode state="{'state': {'1337h4x0R': {'model_module': '@jupyter-widgets/base', 'model_module_version': '1.2.0', 'model_name': 'LayoutModel', 'state': {'_model_module': '@jupyter-widgets/base', '_model_module_version': '1.2.0', '_model_name': 'LayoutModel', '_view_count': None, '_view_module': '@jupyter-widgets/base', '_view_module_version': '1.2.0', '_view_name': 'LayoutView', 'align_content': None, 'align_items': None, 'align_self': None, 'border': None, 'bottom': None, 'display': None, 'flex': None, 'flex_flow': None, 'grid_area': None, 'grid_auto_columns': None, 'grid_auto_flow': None, 'grid_auto_rows': None, 'grid_column': None, 'grid_gap': None, 'grid_row': None, 'grid_template_areas': None, 'grid_template_columns': None, 'grid_template_rows': None, 'height': None, 'justify_content': None, 'justify_items': None, 'left': None, 'margin': None, 'max_height': None, 'max_width': None, 'min_height': None, 'min_width': None, 'object_fit': None, 'object_position': None, 'order': None, 'overflow': None, 'overflow_x': None, 'overflow_y': None, 'padding': None, 'right': None, 'top': None, 'visibility': None, 'width': None}}}, 'version_major': 2, 'version_minor': 0}">

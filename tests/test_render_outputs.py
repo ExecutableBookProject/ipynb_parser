@@ -22,7 +22,11 @@ def test_basic_run(sphinx_run, file_regression):
     sphinx_run.build()
     assert sphinx_run.warnings() == ""
     doctree = sphinx_run.get_resolved_doctree("basic_run")
-    file_regression.check(doctree.pformat(), extension=".xml", encoding="utf8")
+    file_regression.check(
+        doctree.pformat(),
+        extension=f"{sphinx_run.software_versions}.xml",
+        encoding="utf8",
+    )
 
 
 @pytest.mark.sphinx_params(
@@ -33,7 +37,9 @@ def test_complex_outputs(sphinx_run, clean_doctree, file_regression):
     assert sphinx_run.warnings() == ""
     doctree = clean_doctree(sphinx_run.get_resolved_doctree("complex_outputs"))
     file_regression.check(
-        doctree.pformat().replace(".jpeg", ".jpg"), extension=".xml", encoding="utf8"
+        doctree.pformat().replace(".jpeg", ".jpg"),
+        extension=f"{sphinx_run.software_versions}.xml",
+        encoding="utf8",
     )
 
 
@@ -47,7 +53,9 @@ def test_complex_outputs_latex(sphinx_run, clean_doctree, file_regression):
     assert sphinx_run.warnings() == ""
     doctree = clean_doctree(sphinx_run.get_resolved_doctree("complex_outputs"))
     file_regression.check(
-        doctree.pformat().replace(".jpeg", ".jpg"), extension=".xml", encoding="utf8"
+        doctree.pformat().replace(".jpeg", ".jpg"),
+        extension=f"{sphinx_run.software_versions}.xml",
+        encoding="utf8",
     )
 
 
@@ -58,7 +66,11 @@ def test_stderr_tag(sphinx_run, file_regression):
     sphinx_run.build()
     assert sphinx_run.warnings() == ""
     doctree = sphinx_run.get_resolved_doctree("basic_stderr")
-    file_regression.check(doctree.pformat(), extension=".xml", encoding="utf8")
+    file_regression.check(
+        doctree.pformat(),
+        extension=f"{sphinx_run.software_versions}.xml",
+        encoding="utf8",
+    )
 
 
 @pytest.mark.sphinx_params(
@@ -69,7 +81,11 @@ def test_stderr_remove(sphinx_run, file_regression):
     sphinx_run.build()
     assert sphinx_run.warnings() == ""
     doctree = sphinx_run.get_resolved_doctree("basic_stderr")
-    file_regression.check(doctree.pformat(), extension=".xml", encoding="utf8")
+    file_regression.check(
+        doctree.pformat(),
+        extension=f"{sphinx_run.software_versions}.xml",
+        encoding="utf8",
+    )
 
 
 @pytest.mark.sphinx_params(
@@ -81,7 +97,9 @@ def test_metadata_image(sphinx_run, clean_doctree, file_regression):
     assert sphinx_run.warnings() == ""
     doctree = clean_doctree(sphinx_run.get_resolved_doctree("metadata_image"))
     file_regression.check(
-        doctree.pformat().replace(".jpeg", ".jpg"), extension=".xml", encoding="utf8"
+        doctree.pformat().replace(".jpeg", ".jpg"),
+        extension=f"{sphinx_run.software_versions}.xml",
+        encoding="utf8",
     )
 
 
@@ -96,4 +114,8 @@ def test_metadata_image(sphinx_run, clean_doctree, file_regression):
 #     )
 #     assert warning in sphinx_run.warnings()
 #     doctree = sphinx_run.get_resolved_doctree("unknown_mimetype")
-#     file_regression.check(doctree.pformat(), extension=".xml", encoding="utf8")
+#     file_regression.check(
+#           doctree.pformat(),
+#           extension=f"{sphinx_run.software_versions}.xml",
+#           encoding="utf8"
+#      )

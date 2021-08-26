@@ -110,7 +110,11 @@ def test_parser(sphinx_run, clean_doctree, file_regression):
     # print(sphinx_run.status())
     assert sphinx_run.warnings() == ""
     doctree = clean_doctree(sphinx_run.get_resolved_doctree("with_glue"))
-    file_regression.check(doctree.pformat(), extension=".xml", encoding="utf8")
+    file_regression.check(
+        doctree.pformat(),
+        extension=f"{sphinx_run.software_versions}.xml",
+        encoding="utf8",
+    )
     glue_domain = NbGlueDomain.from_env(sphinx_run.app.env)
     assert set(glue_domain.cache) == {
         "key_text1",
