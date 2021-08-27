@@ -1,5 +1,5 @@
 <document source="metadata_image">
-    <section ids="formatting-code-outputs" names="formatting\ code\ outputs">
+    <section classes="tex2jax_ignore mathjax_ignore" ids="formatting-code-outputs" names="formatting\ code\ outputs">
         <title>
             Formatting code outputs
         <CellNode cell_type="code" classes="cell">

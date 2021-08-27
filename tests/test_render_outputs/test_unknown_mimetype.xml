@@ -1,7 +1,0 @@
-<document source="unknown_mimetype">
-    <CellNode cell_type="code" classes="cell">
-        <CellInputNode classes="cell_input">
-            <literal_block language="ipython3" linenos="False" xml:space="preserve">
-                a=1
-                print(a)
-        <CellOutputNode classes="cell_output">

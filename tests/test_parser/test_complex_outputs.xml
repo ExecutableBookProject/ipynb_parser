@@ -9,7 +9,7 @@
                 sym.init_printing(use_latex=True)
                 import numpy as np
                 from IPython.display import Image, Latex
-    <section ids="markdown" names="markdown">
+    <section classes="tex2jax_ignore mathjax_ignore" ids="markdown" names="markdown">
         <title>
             Markdown
         <section ids="general" names="general">
@@ -84,7 +84,7 @@
                 \todo[inline]{an inline todo}
             <paragraph>
                 Some text.\todo{a todo in the margins}
-    <section ids="text-output" names="text\ output">
+    <section classes="tex2jax_ignore mathjax_ignore" ids="text-output" names="text\ output">
         <title>
             Text Output
         <CellNode cell_type="code" classes="cell">
@@ -96,7 +96,7 @@
                     """)
             <CellOutputNode classes="cell_output">
                 <CellOutputBundleNode output_count="1">
-    <section ids="images-and-figures" names="images\ and\ figures">
+    <section classes="tex2jax_ignore mathjax_ignore" ids="images-and-figures" names="images\ and\ figures">
         <title>
             Images and Figures
         <CellNode cell_type="code" classes="cell">
@@ -121,7 +121,7 @@
                         plt.legend();
                 <CellOutputNode classes="cell_output">
                     <CellOutputBundleNode output_count="1">
-    <section ids="tables-with-pandas" names="tables\ (with\ pandas)">
+    <section classes="tex2jax_ignore mathjax_ignore" ids="tables-with-pandas" names="tables\ (with\ pandas)">
         <title>
             Tables (with pandas)
         <paragraph>
@@ -136,7 +136,7 @@
                     df.round(3)
             <CellOutputNode classes="cell_output">
                 <CellOutputBundleNode output_count="1">
-    <section ids="equations-with-ipython-or-sympy" names="equations\ (with\ ipython\ or\ sympy)">
+    <section classes="tex2jax_ignore mathjax_ignore" ids="equations-with-ipython-or-sympy" names="equations\ (with\ ipython\ or\ sympy)">
         <title>
             Equations (with ipython or sympy)
         <CellNode cell_type="code" classes="cell">

@@ -1,5 +1,5 @@
 <document source="with_glue">
-    <section ids="glue-tests" names="glue\ tests">
+    <section classes="tex2jax_ignore mathjax_ignore" ids="glue-tests" names="glue\ tests">
         <title>
             Glue Tests
         <CellNode cell_type="code" classes="cell">

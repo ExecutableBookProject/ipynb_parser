@@ -1,5 +1,5 @@
 <document source="basic_failing">
-    <section ids="a-title" names="a\ title">
+    <section classes="tex2jax_ignore mathjax_ignore" ids="a-title" names="a\ title">
         <title>
             a title
         <paragraph>

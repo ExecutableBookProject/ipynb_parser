@@ -1,6 +1,6 @@
 <document source="latex_build/other">
     <target refid="title-ref">
-    <section ids="title title-ref" names="title title_ref">
+    <section classes="tex2jax_ignore mathjax_ignore" ids="title title-ref" names="title title_ref">
         <title refid="id1">
             Title
         <topic classes="contents" ids="contents" names="contents">

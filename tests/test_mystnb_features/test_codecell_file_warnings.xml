@@ -1,5 +1,5 @@
 <document source="mystnb_codecell_file_warnings">
-    <section ids="a-title" names="a\ title">
+    <section classes="tex2jax_ignore mathjax_ignore" ids="a-title" names="a\ title">
         <title>
             a title
         <CellNode cell_type="code" classes="cell">
