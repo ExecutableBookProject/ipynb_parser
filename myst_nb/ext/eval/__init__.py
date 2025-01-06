@@ -1,4 +1,5 @@
 """Roles/directives for evaluating variables in the notebook."""
+
 from __future__ import annotations
 
 from functools import partial
@@ -161,9 +162,9 @@ class EvalFigureDirective(DirectiveBase):
         render: dict[str, Any] = {}
         for key in ("alt", "height", "width", "scale", "class"):
             if key in self.options:
-                render.setdefault("image", {})[
-                    key.replace("classes", "class")
-                ] = self.options[key]
+                render.setdefault("image", {})[key.replace("classes", "class")] = (
+                    self.options[key]
+                )
 
         mime_nodes = render_variable_outputs(
             data, self.document, self.line, self.source, render=render

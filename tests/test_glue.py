@@ -1,4 +1,5 @@
 """Test the `glue` directives and roles."""
+
 from IPython.core.displaypub import DisplayPublisher
 from IPython.core.interactiveshell import InteractiveShell
 import nbformat

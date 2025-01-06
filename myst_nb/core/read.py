@@ -1,4 +1,5 @@
 """Module for reading notebook formats from a string input."""
+
 from __future__ import annotations
 
 import dataclasses as dc

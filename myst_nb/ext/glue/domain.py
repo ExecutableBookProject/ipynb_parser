@@ -2,6 +2,7 @@
 
 This is required for any directive/role names using `:`.
 """
+
 from sphinx.domains import Domain
 
 from .directives import (
