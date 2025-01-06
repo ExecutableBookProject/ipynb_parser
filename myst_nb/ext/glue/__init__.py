@@ -1,6 +1,7 @@
 """Functionality for storing special data in notebook code cells,
 which can then be inserted into the document body.
 """
+
 from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any

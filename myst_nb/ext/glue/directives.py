@@ -3,6 +3,7 @@
 We intentionally do no import sphinx in this module,
 in order to allow docutils-only use without sphinx installed.
 """
+
 from typing import TYPE_CHECKING, Any, Dict, List
 
 from docutils import nodes
@@ -151,9 +152,9 @@ class PasteFigureDirective(DirectiveBase):
         render: Dict[str, Any] = {}
         for key in ("alt", "height", "width", "scale", "class"):
             if key in self.options:
-                render.setdefault("image", {})[
-                    key.replace("classes", "class")
-                ] = self.options[key]
+                render.setdefault("image", {})[key.replace("classes", "class")] = (
+                    self.options[key]
+                )
         paste_nodes = render_variable_outputs(
             [data], self.document, self.line, self.source, render=render
         )

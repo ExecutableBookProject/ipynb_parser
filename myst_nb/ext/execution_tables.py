@@ -4,6 +4,7 @@ The `nb-exec-table` directive adds a placeholder node to the document,
 which is then replaced by a table of statistics in a post-transformation
 (once all the documents have been executed and these statistics are available).
 """
+
 from __future__ import annotations
 
 from datetime import datetime

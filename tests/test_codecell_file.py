@@ -1,4 +1,5 @@
 """Test notebooks containing code cells with the `load` option."""
+
 import pytest
 from sphinx.util.fileutil import copy_asset_file
 
