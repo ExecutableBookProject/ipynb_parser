@@ -197,13 +197,16 @@ class NbParserConfig:
             "sections": (Section.global_lvl, Section.file_lvl, Section.execute),
         },
     )
-    execution_mode: Literal["off", "force", "auto", "cache", "inline"] = dc.field(
+    execution_mode: Literal[
+        "off", "force", "auto", "lazy", "cache", "inline"
+    ] = dc.field(
         default="auto",
         metadata={
             "validator": in_(
                 [
                     "off",
                     "auto",
+                    "lazy",
                     "force",
                     "cache",
                     "inline",

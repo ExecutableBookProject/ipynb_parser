@@ -52,6 +52,21 @@ def test_basic_unrun_auto(sphinx_run, file_regression, check_nbs):
     assert data["succeeded"] is True
 
 
+@pytest.mark.sphinx_params("basic_unrun.ipynb", conf={"nb_execution_mode": "lazy"})
+def test_basic_unrun_lazy(sphinx_run, file_regression, check_nbs):
+    sphinx_run.build()
+    # print(sphinx_run.status())
+    assert sphinx_run.warnings() == ""
+    assert "test_name" in sphinx_run.app.env.metadata["basic_unrun"]
+    regress_nb_doc(file_regression, sphinx_run, check_nbs)
+
+    assert NbMetadataCollector.new_exec_data(sphinx_run.env)
+    data = NbMetadataCollector.get_exec_data(sphinx_run.env, "basic_unrun")
+    assert data
+    assert data["method"] == "lazy"
+    assert data["succeeded"] is True
+
+
 @pytest.mark.sphinx_params("basic_unrun.ipynb", conf={"nb_execution_mode": "cache"})
 def test_basic_unrun_cache(sphinx_run, file_regression, check_nbs):
     """The outputs should be populated."""
@@ -144,6 +159,21 @@ def test_basic_failing_auto(sphinx_run, file_regression, check_nbs):
     data = NbMetadataCollector.get_exec_data(sphinx_run.env, "basic_failing")
     assert data
     assert data["method"] == "auto"
+    assert data["succeeded"] is False
+    assert data["traceback"]
+    sphinx_run.get_report_file()
+
+
+@pytest.mark.skipif(ipy_version[0] < 8, reason="Error message changes for ipython v8")
+@pytest.mark.sphinx_params("basic_failing.ipynb", conf={"nb_execution_mode": "lazy"})
+def test_basic_failing_lazy(sphinx_run, file_regression, check_nbs):
+    sphinx_run.build()
+    assert "Executing notebook failed" in sphinx_run.warnings()
+    regress_nb_doc(file_regression, sphinx_run, check_nbs)
+
+    data = NbMetadataCollector.get_exec_data(sphinx_run.env, "basic_failing")
+    assert data
+    assert data["method"] == "lazy"
     assert data["succeeded"] is False
     assert data["traceback"]
     sphinx_run.get_report_file()

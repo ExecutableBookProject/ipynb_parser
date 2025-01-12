@@ -50,7 +50,8 @@ def create_client(
                 logger.info(f"Excluded from execution by pattern: {pattern!r}")
                 return NotebookClientBase(notebook, path, nb_config, logger)
 
-    # 'auto' mode only executes the notebook if it is missing at least one output
+    # 'auto' mode only executes the notebook if it is missing at least one output,
+    # 'lazy' mode only executes if all outputs are missing.
     missing_outputs = (
         len(cell.outputs) == 0 for cell in notebook.cells if cell["cell_type"] == "code"
     )
@@ -58,7 +59,11 @@ def create_client(
         logger.info("Skipped execution in 'auto' mode (all outputs present)")
         return NotebookClientBase(notebook, path, nb_config, logger)
 
-    if nb_config.execution_mode in ("auto", "force"):
+    if nb_config.execution_mode == "lazy" and not all(missing_outputs):
+        logger.info("Skipped execution in 'lazy' mode (at least one output present)")
+        return NotebookClientBase(notebook, path, nb_config, logger)
+
+    if nb_config.execution_mode in ("auto", "lazy", "force"):
         return NotebookClientDirect(notebook, path, nb_config, logger)
 
     if nb_config.execution_mode == "cache":
