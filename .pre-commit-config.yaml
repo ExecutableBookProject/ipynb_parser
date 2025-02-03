@@ -15,7 +15,7 @@ ci:
 repos:
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+    rev: v5.0.0
     hooks:
     - id: check-json
     - id: check-yaml
@@ -28,14 +28,14 @@ repos:
     - id: trailing-whitespace
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.1.4
+    rev: v0.9.4
     hooks:
     - id: ruff
       args: ["--fix", "--show-fixes"]
     - id: ruff-format
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.6.1
+    rev: v1.14.1
     hooks:
     - id: mypy
       args: [--config-file=pyproject.toml]
@@ -51,7 +51,7 @@ repos:
         )$
 
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.2.6
+    rev: v2.4.1
     hooks:
     - id: codespell
       args: ["-S", "*.ipynb"]
