@@ -1,4 +1,5 @@
 """The docutils parser implementation for myst-nb."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass, field

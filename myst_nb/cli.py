@@ -1,4 +1,5 @@
 """A basic CLI for quickstart of a myst_nb project."""
+
 from __future__ import annotations
 
 import argparse
@@ -81,7 +82,7 @@ nitpicky = True
         if field.metadata.get("sphinx_exclude"):
             continue
         if field.metadata.get("help"):
-            settings += f'{field.metadata.get("help")}\n'
+            settings += f"{field.metadata.get('help')}\n"
         settings += f"nb_{name} = {value!r}\n\n"
     content += "\n" + indent(settings, "# ").rstrip() + "\n"
 

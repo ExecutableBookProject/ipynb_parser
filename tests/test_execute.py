@@ -1,4 +1,5 @@
 """Test sphinx builds which execute notebooks."""
+
 import os
 from pathlib import Path
 

@@ -3,6 +3,7 @@
 We intentionally do no import sphinx in this module,
 in order to allow docutils-only use without sphinx installed.
 """
+
 from __future__ import annotations
 
 from functools import partial
