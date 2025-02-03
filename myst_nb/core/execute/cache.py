@@ -1,4 +1,5 @@
 """Execute a notebook from the cache."""
+
 from __future__ import annotations
 
 from contextlib import nullcontext, suppress
