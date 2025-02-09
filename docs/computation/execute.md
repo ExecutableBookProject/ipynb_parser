@@ -227,3 +227,27 @@ which produces:
 
 ```{nb-exec-table}
 ```
+
+(execute/builder-dep)=
+## Builder-dependent execution
+
+```{warning}
+This is an experimental feature that is **not** part of the core `MyST` markup specification, and may be removed in the future. Using `:only:` may also not work well with caching and may require deleting previously built files when switching builders.
+```
+
+It may be desirable to execute different code depending on the Sphinx builder being used.
+For example, one may want to have different setup code for plots to be displayed in a website compared to those in a PDF file obtained via LaTeX.
+One can use the `only` option in situations like these, like in the following example:
+
+````md
+```{code-cell}
+:only: html
+import matplotlib.pyplot as plt
+plt.style.use('ggplot')
+```
+
+```{code-cell}
+:only: latex
+plt.style.use('fivethirtyeight')
+```
+````

@@ -1,4 +1,5 @@
 """The sphinx parser implementation for myst-nb."""
+
 from __future__ import annotations
 
 from collections import defaultdict
@@ -80,6 +81,7 @@ class Parser(MystParser):
 
         # get notebook rendering configuration
         nb_config: NbParserConfig = self.env.mystnb_config
+        nb_config.builder_name = self.env.app.builder.name
 
         # create a reader for the notebook
         nb_reader = create_nb_reader(document_path, md_config, nb_config, inputstring)

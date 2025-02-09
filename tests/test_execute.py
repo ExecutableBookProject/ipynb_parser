@@ -1,4 +1,5 @@
 """Test sphinx builds which execute notebooks."""
+
 import os
 from pathlib import Path
 
@@ -325,6 +326,55 @@ def test_nb_exec_table(sphinx_run, file_regression):
     # print(sphinx_run.get_html())
     rows = sphinx_run.get_html().select("table.docutils tr")
     assert any("nb_exec_table" in row.text for row in rows)
+
+
+@pytest.mark.sphinx_params(
+    "with_only.md", conf={"nb_execution_mode": "auto"}, buildername="html"
+)
+def test_only_html(sphinx_run, file_regression):
+    """Test that the table gets output into the HTML,
+    including a row for the executed notebook.
+    """
+    sphinx_run.build()
+    # print(sphinx_run.status())
+    assert not sphinx_run.warnings()
+    file_regression.check(
+        sphinx_run.get_doctree().pformat(), extension=".xml", encoding="utf-8"
+    )
+    # print(sphinx_run.get_html())
+    output = sphinx_run.get_html().select("div.output div.highlight pre")
+    assert len(output) == 1  # check that other cell is not present
+    assert "2" in output[0].text  # check value to ensure correct cell is present
+
+
+@pytest.mark.sphinx_params(
+    "with_only.md", 
+    conf={
+        "nb_execution_mode": "auto",
+        "latex_documents": [('with_only', 'with_only.tex', "project", "author", 'manual')]
+        }, 
+    buildername="latex"
+)
+def test_only_latex(sphinx_run, file_regression):
+    """Test that the table gets output into the HTML,
+    including a row for the executed notebook.
+    """
+    sphinx_run.build()
+    # print(sphinx_run.status())
+    assert not sphinx_run.warnings()
+    file_regression.check(
+        sphinx_run.get_doctree().pformat(), extension=".xml", encoding="utf-8"
+    )
+    # print(sphinx_run.get_html())
+    output = sphinx_run.get_latex()
+    correct = (
+        r"\begin{sphinxVerbatim}[commandchars=\\\{\}]" "\n4\n" r"\end{sphinxVerbatim}"
+    )
+    assert correct in output  # check value to ensure correct cell is present
+    wrong = (
+        r"\begin{sphinxVerbatim}[commandchars=\\\{\}]" "\n2\n" r"\end{sphinxVerbatim}"
+    )
+    assert wrong not in output  # check value to ensure other cell is not present
 
 
 @pytest.mark.sphinx_params(

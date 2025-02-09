@@ -1,0 +1,16 @@
+<document source="with_only">
+    <section ids="test-the-only-option" names="test\ the\ :only:\ option">
+        <title>
+            Test the 
+            <literal>
+                :only:
+             option
+        <container cell_index="1" cell_metadata="{'only': 'latex'}" classes="cell" exec_count="1" nb_element="cell_code">
+            <container classes="cell_input" nb_element="cell_code_source">
+                <literal_block language="ipython3" xml:space="preserve">
+                    2+2
+            <container classes="cell_output" nb_element="cell_code_output">
+                <container nb_element="mime_bundle">
+                    <container mime_type="text/plain">
+                        <literal_block classes="output text_plain" language="myst-ansi" xml:space="preserve">
+                            4
