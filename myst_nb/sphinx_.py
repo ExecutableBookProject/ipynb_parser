@@ -491,10 +491,14 @@ class HideCodeCellNode(nodes.Element):
 
 def visit_HideCellInput(self: SphinxTranslator, node: HideCodeCellNode):
     classes = " ".join(node["classes"])
-    self.body.append(f'<details class="hide {classes}">\n')
+    self.body.append(f'<details class="admonition hide {classes}">\n')
     self.body.append('<summary aria-label="Toggle hidden content">\n')
-    self.body.append(f'<span class="collapsed">{escape(node["prompt_show"])}</span>\n')
-    self.body.append(f'<span class="expanded">{escape(node["prompt_hide"])}</span>\n')
+    self.body.append(
+        f'<p class="collapsed admonition-title">{escape(node["prompt_show"])}</p>\n'
+    )
+    self.body.append(
+        f'<p class="expanded admonition-title">{escape(node["prompt_hide"])}</p>\n'
+    )
     self.body.append("</summary>\n")
 
 

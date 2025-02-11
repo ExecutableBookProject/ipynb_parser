@@ -35,8 +35,7 @@ div.container.cell {
 }
 
 /* Input cells */
-div.cell div.cell_input,
-div.cell details.above-input>summary {
+div.cell > div.cell_input {
   padding-left: 0em;
   padding-right: 0em;
   border: var(--mystnb-source-border-width) var(--mystnb-source-border-color) solid;
@@ -85,57 +84,69 @@ div.cell_output div.output>div.highlight {
   border: 1px solid var(--mystnb-traceback-border-color);
 }
 
-/* Collapsible cell content */
-div.cell details.above-input div.cell_input {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-top: var(--mystnb-source-border-width) var(--mystnb-source-border-color) dashed;
+/* --- Collapsible cell content --- */
+
+/*
+encourage summary container to blend in with its parent.
+p.admonition-title should hold the title styles.
+*/
+div.cell details.hide summary {
+  border-left: unset;
+  padding: inherit;
+  margin: inherit;
+  background-color: inherit;
 }
 
-div.cell div.cell_input.above-output-prompt {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+/* Neighboring input/output elements - spacing, borders */
+div.cell details.hide.above-input + details.below-input,
+div.cell div.cell_input + details.below-input
+{
+  margin-top: 0;
 }
 
-div.cell details.above-input>summary {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  border-bottom: var(--mystnb-source-border-width) var(--mystnb-source-border-color) dashed;
-  padding-left: 1em;
+div.cell details.hide.above-input:has(+ details.below-input),
+div.cell div.cell_input:has(+ details.below-input)
+{
   margin-bottom: 0;
 }
 
-div.cell details.above-output>summary {
-  background-color: var(--mystnb-source-bg-color);
-  padding-left: 1em;
-  padding-right: 0em;
-  border: var(--mystnb-source-border-width) var(--mystnb-source-border-color) solid;
-  border-radius: var(--mystnb-source-border-radius);
-  border-left-color: var(--mystnb-source-margin-color);
-  border-left-width: medium;
+div.cell:has(> *:nth-child(2)) div.cell_input:first-child,
+div.cell:has(> *:nth-child(2)) details:first-child
+{
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
-div.cell details.below-input>summary {
-  background-color: var(--mystnb-source-bg-color);
-  padding-left: 1em;
-  padding-right: 0em;
-  border: var(--mystnb-source-border-width) var(--mystnb-source-border-color) solid;
-  border-top: none;
-  border-bottom-left-radius: var(--mystnb-source-border-radius);
-  border-bottom-right-radius: var(--mystnb-source-border-radius);
-  border-left-color: var(--mystnb-source-margin-color);
-  border-left-width: medium;
+div.cell:has(> *:nth-child(2)) div.cell_input:last-child,
+div.cell:has(> *:nth-child(2)) details:last-child
+{
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 
-div.cell details.hide>summary>span {
-  opacity: var(--mystnb-hide-prompt-opacity);
+/* intra-label styles for collapsibles */
+div.cell.container details.hide.above-input>summary,
+div.cell.container details.hide.below-input>summary,
+div.cell.container details.hide.above-output>summary
+{
+  display: block;
+  border-left: none;
 }
 
-div.cell details.hide[open]>summary>span.collapsed {
+div.cell details.hide>summary>p.admonition-title {
+  display: list-item;
+  margin-bottom: 0;
+}
+
+div.cell details.hide:not([open]) {
+  padding-bottom: 0;
+}
+
+div.cell details.hide[open]>summary>p.collapsed {
   display: none;
 }
 
-div.cell details.hide:not([open])>summary>span.expanded {
+div.cell details.hide:not([open])>summary>p.expanded {
   display: none;
 }
 
@@ -152,6 +163,11 @@ div.cell details.hide[open]>summary~* {
   -moz-animation: collapsed-fade-in 0.3s ease-in-out;
   -webkit-animation: collapsed-fade-in 0.3s ease-in-out;
   animation: collapsed-fade-in 0.3s ease-in-out;
+}
+
+/* Clear conflicting styles for details and admonitions set by some themes */
+div.cell details.admonition summary::before {
+  content: unset;
 }
 
 /* Math align to the left */
