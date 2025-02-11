@@ -48,6 +48,7 @@ def notebook_to_tokens(
 
         # generate tokens
         tokens: list[Token]
+        cell_id = nb_cell.get("id", None)
         if nb_cell["cell_type"] == "markdown":
             # https://nbformat.readthedocs.io/en/5.1.3/format_description.html#markdown-cells
             # TODO if cell has tag output-caption, then use as caption for next/preceding cell?
@@ -60,6 +61,7 @@ def notebook_to_tokens(
                     meta={
                         "index": cell_index,
                         "metadata": nb_node_to_dict(nb_cell["metadata"]),
+                        "id": cell_id,
                     },
                     map=[0, len(nb_cell["source"].splitlines()) - 1],
                 ),
@@ -88,6 +90,7 @@ def notebook_to_tokens(
                     meta={
                         "index": cell_index,
                         "metadata": nb_node_to_dict(nb_cell["metadata"]),
+                        "id": cell_id,
                     },
                     map=[0, 0],
                 )
@@ -106,6 +109,7 @@ def notebook_to_tokens(
                     meta={
                         "index": cell_index,
                         "metadata": nb_node_to_dict(nb_cell["metadata"]),
+                        "id": cell_id,
                     },
                     map=[0, 0],
                 )

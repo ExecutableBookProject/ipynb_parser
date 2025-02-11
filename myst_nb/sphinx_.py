@@ -88,6 +88,12 @@ class Parser(MystParser):
             return super().parse(inputstring, document)
         notebook = nb_reader.read(inputstring)
 
+        if not nb_reader.support_cell_ids:
+            # mark randomly generated cell IDs
+            for cell in notebook["cells"]:
+                if "id" in cell:
+                    cell["id"] = "RANDOM_CELL_ID_" + cell["id"]
+
         # update the global markdown config with the file-level config
         warning = lambda wtype, msg: create_warning(  # noqa: E731
             document, msg, line=1, append_to=document, subtype=wtype

@@ -31,6 +31,8 @@ class NbReader:
     """The configuration for parsing markdown cells."""
     read_fmt: dict | None = dc.field(default=None)
     """The type of the reader, if known."""
+    support_cell_ids: bool = False
+    """Whether the format supports stable cell IDs"""
 
 
 def standard_nb_read(text: str) -> nbf.NotebookNode:
@@ -78,7 +80,11 @@ def create_nb_reader(
             if commonmark_only:
                 # Markdown cells should be read as Markdown only
                 md_config = dc.replace(md_config, commonmark_only=True)
-            return NbReader(partial(reader, **(reader_kwargs or {})), md_config)  # type: ignore
+            return NbReader(
+                partial(reader, **(reader_kwargs or {})),  # type: ignore
+                md_config,
+                support_cell_ids=suffix == ".ipynb",
+            )
 
     # a Markdown file is a special case, since we only treat it as a notebook,
     # if it starts with certain "top-matter"
@@ -92,6 +98,7 @@ def create_nb_reader(
             ),
             md_config,
             {"type": "plugin", "name": "myst_nb_md"},
+            support_cell_ids=False,
         )
 
     # if we get here, we did not find a reader

@@ -64,6 +64,7 @@ class MditRenderMixin:
     current_node: Any
     current_node_context: Any
     create_highlighted_code_block: Any
+    _heading_slugs: Any  # TODO create & expose a method in `DocutilsRenderer`
 
     @property
     def nb_config(self: SelfType) -> NbParserConfig:
@@ -179,6 +180,17 @@ class MditRenderMixin:
             cell_metadata=token.meta["metadata"],
             classes=classes,
         )
+
+        cell_id = token.meta["id"]
+        if cell_id and not cell_id.startswith("RANDOM_CELL_ID"):
+            self.document.note_implicit_target(cell_container, cell_container)
+            slug = "cell-id=" + cell_id
+            cell_container["slug"] = slug
+            self._heading_slugs[slug] = (
+                cell_container.line,
+                cell_container["ids"][0],
+                "",
+            )
         if hide_mode:
             cell_container["hide_mode"] = hide_mode
             code_prompt_show = self.get_cell_level_config(
