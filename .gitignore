@@ -135,6 +135,7 @@ dmypy.json
 .DS_Store
 
 .vscode/
+/hatch.toml
 
 todos.md
 _archive/

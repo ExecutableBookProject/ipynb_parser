@@ -2,15 +2,18 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Any
+from typing import TYPE_CHECKING, Any
 
-from nbformat import NotebookNode
+from nbformat import NotebookNode, from_dict
 from typing_extensions import TypedDict, final
 
 from myst_nb.core.config import NbParserConfig
 from myst_nb.core.loggers import LoggerType
 from myst_nb.core.nb_to_tokens import nb_node_to_dict
 from myst_nb.ext.glue import extract_glue_data
+
+if TYPE_CHECKING:
+    from markdown_it.tree import SyntaxTreeNode
 
 
 class ExecutionResult(TypedDict):
@@ -39,7 +42,7 @@ class EvalNameError(Exception):
 
 
 class NotebookClientBase:
-    """A base client for interacting with Jupyter notebooks.
+    """A client base class for interacting with Jupyter notebooks.
 
     This class is intended to be used as a context manager,
     and should only be entered once.
@@ -166,7 +169,9 @@ class NotebookClientBase:
         cell = cells[cell_index]
         return cell.get("execution_count", None), cell.get("outputs", [])
 
-    def eval_variable(self, name: str) -> list[NotebookNode]:
+    def eval_variable(
+        self, name: str, current_cell: SyntaxTreeNode
+    ) -> list[NotebookNode]:
         """Retrieve the value of a variable from the kernel.
 
         :param name: the name of the variable,
@@ -177,3 +182,29 @@ class NotebookClientBase:
         :raises EvalNameError: if the variable name is invalid
         """
         raise NotImplementedError
+
+
+class NotebookClientReadOnly(NotebookClientBase):
+    """A notebook client that does not execute the notebook."""
+
+    def eval_variable(
+        self, name: str, current_cell: SyntaxTreeNode
+    ) -> list[NotebookNode]:
+        """Retrieve the value of a variable from the current cell metadata if possible.
+
+        :param name: the name of the variable
+        :returns: code cell outputs
+        :raises RetrievalError: if the cell metadata does not contain the eval result
+        :raises EvalNameError: if the variable name is invalid
+        """
+        for ux in current_cell.meta.get("metadata", {}).get("user_expressions", []):
+            if ux["expression"] == name:
+                return from_dict([ux["result"]])
+
+        from myst_nb.core.variables import RetrievalError
+
+        msg = (
+            f"Cell {current_cell.meta.get('index', '')} does "
+            f"not contain execution result for variable {name!r}"
+        )
+        raise RetrievalError(msg)

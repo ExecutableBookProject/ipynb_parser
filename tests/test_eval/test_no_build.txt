@@ -1,0 +1,8 @@
+<document source="with_eval_executed">
+    <container cell_index="0" cell_metadata="{}" classes="cell" exec_count="1" nb_element="cell_code">
+        <container classes="cell_input" nb_element="cell_code_source">
+            <literal_block language="ipython3" linenos="False" xml:space="preserve">
+                x = 2
+    <paragraph>
+        <inline classes="output text_plain">
+            2’

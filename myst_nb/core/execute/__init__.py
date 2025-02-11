@@ -3,7 +3,12 @@ from __future__ import annotations
 from pathlib import Path, PurePosixPath
 from typing import TYPE_CHECKING
 
-from .base import ExecutionError, ExecutionResult, NotebookClientBase  # noqa: F401
+from .base import (
+    ExecutionError,  # noqa: F401
+    ExecutionResult,  # noqa: F401
+    NotebookClientBase,
+    NotebookClientReadOnly,
+)
 from .cache import NotebookClientCache
 from .direct import NotebookClientDirect
 from .inline import NotebookClientInline
@@ -48,7 +53,7 @@ def create_client(
         for pattern in nb_config.execution_excludepatterns:
             if posix_path.match(pattern):
                 logger.info(f"Excluded from execution by pattern: {pattern!r}")
-                return NotebookClientBase(notebook, path, nb_config, logger)
+                return NotebookClientReadOnly(notebook, path, nb_config, logger)
 
     # 'auto' mode only executes the notebook if it is missing at least one output
     missing_outputs = (
@@ -56,7 +61,7 @@ def create_client(
     )
     if nb_config.execution_mode == "auto" and not any(missing_outputs):
         logger.info("Skipped execution in 'auto' mode (all outputs present)")
-        return NotebookClientBase(notebook, path, nb_config, logger)
+        return NotebookClientReadOnly(notebook, path, nb_config, logger)
 
     if nb_config.execution_mode in ("auto", "force"):
         return NotebookClientDirect(notebook, path, nb_config, logger)
@@ -67,4 +72,4 @@ def create_client(
     if nb_config.execution_mode == "inline":
         return NotebookClientInline(notebook, path, nb_config, logger)
 
-    return NotebookClientBase(notebook, path, nb_config, logger)
+    return NotebookClientReadOnly(notebook, path, nb_config, logger)
