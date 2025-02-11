@@ -23,7 +23,8 @@ To trigger the execution of notebook pages, use the global `nb_execution_mode` c
 | -------- | -------------------------------------------------------------------- |
 | `off`    | Do not execute the notebook                                          |
 | `force`  | Always execute the notebook (before parsing)                         |
-| `auto`   | Execute notebooks with missing outputs (before parsing)              |
+| `auto`   | Execute notebooks with any missing outputs (before parsing)          |
+| `lazy`   | Execute notebooks without any existing outputs (before parsing)      |
 | `cache`  | Execute notebook and store/retrieve outputs from a cache             |
 | `inline` | Execute the notebook during parsing (allows for variable evaluation) |
 
@@ -35,6 +36,12 @@ nb_execution_mode = "auto"
 
 This will only execute notebooks that are missing at least one output.
 If a notebook has *all* of its outputs populated, then it will not be executed.
+
+To only execute notebooks that do not have *any* of its outputs populated, change the above configuration value to:
+
+```python
+nb_execution_mode = "lazy"
+```
 
 To force the execution of all notebooks, regardless of their outputs, change the above configuration value to:
 
