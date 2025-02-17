@@ -109,6 +109,21 @@ print("hallo world")
 print("hallo world")
 ```
 
+### LaTeX output
+
+Hiding cells in LaTeX output does nothing, unless further tweaks on the LaTeX side are in place.
+
+Cell tags are helpfully propagated to the LaTeX source (e.g. `hide-cell` tag will wrap the cell inside the `\begin{sphinxuseclass}{tag_hide-cell}…\end{sphinxuseclass}`), but those classes, by default, do nothing. Adjust LaTeX preamble (in `conf.py`, editing `latex_elements` option and its `preamble` field) by adding e.g.
+
+```{code-cell} latex
+
+\NewDocumentEnvironment{HIDDEN}{+b}{}{}                                  % defines a new environment HIDDEN which ignores its contents (no output)
+\newenvironment{sphinxclasstag_hide-cell}{\begin{HIDDEN}}{\end{HIDDEN}}  % this will be used by \begin{sphinxuseclass}{tag_hide-cell}…\end{sphinxuseclass}
+```
+
+to completely hide all cells with the `hide-cell` tag.
+
+
 (use/hiding/markdown)=
 
 ## Hide markdown cells

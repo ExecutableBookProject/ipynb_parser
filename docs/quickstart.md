@@ -25,6 +25,9 @@ extensions = [
 
 By default, MyST-NB will now parse both markdown (`.md`) and notebooks (`.ipynb`).
 
+If you used the `myst_parser` extension already, remove it from the extension list to avoid conflict — it is imported by `myst_nb` automatically; all its options, such as `myst_enable_extension`, will be processed.
+
+
 ```{button-ref} authoring/intro
 :ref-type: myst
 :color: primary
